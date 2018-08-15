@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Last words</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900,900i|Special+Elite" rel="stylesheet">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src='d3-tip.js'></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="d3-tip.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+
+<body>
+
+
+
+
+<script src="swap.js"></script>
+<script src='https://unpkg.com/intersection-observer'></script>
+<script src='https://unpkg.com/scrollama'></script>
+<script src='stickyfill.min.js'></script>
+
+<script>
+  /* Allow position: sticky to work in old browsers */
+  var elements = document.querySelectorAll('.sticky');
+  Stickyfill.add(elements);
+
+  // instantiate the scrollama
+  var scroller = scrollama();
+
+  scroller
+    .setup({
+      // IF YOU CHANGE THIS CHANGE THE .sticky CSS
+      offset: 0.30, // how far from the top?
+      step: '.step', // class for stepping through
+      debug: false, // shows the line
+      container: 'container'
+    })
+    .onStepEnter(function(response) {
+      // trigger the stepin event
+      d3.select(response.element).dispatch('stepin')
+      d3.select(response.element).classed('active', true)
+    })
+    .onStepExit(function(response) {
+      // trigger the stepout event
+      d3.select(response.element).dispatch('stepout')
+      d3.select(response.element).classed('active', false)
+    })
+</script>
+
+</body>
+
+
+</html>
